@@ -50,6 +50,13 @@ export interface MenuListItem {
   icon: string;
   component: string;
   permission: string;
+  menu_name: string;
+  label?: string;
+  value?: string;
+  title?: string;
+  key?: string;
+  parent_menu?: string;
+  children?: MenuListItem[];
 }
 
 export interface RoleListItem {

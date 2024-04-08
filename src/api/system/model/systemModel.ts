@@ -28,15 +28,15 @@ export interface AccountListItem {
   email: string;
   nickname: string;
   role: number;
-  createTime: string;
+  created_time: string;
   remark: string;
   status: number;
 }
 
 export interface DeptListItem {
   id: string;
-  orderNo: string;
-  createTime: string;
+  order_no: string;
+  created_time: string;
   remark: string;
   status: number;
   dept_name: string;
@@ -51,8 +51,8 @@ export interface DeptListItem {
 
 export interface MenuListItem {
   id: string;
-  orderNo: string;
-  createTime: string;
+  order_no: string;
+  created_time: string;
   status: number;
   icon: string;
   component: string;
@@ -71,8 +71,8 @@ export interface RoleListItem {
   roleName: string;
   roleValue: string;
   status: number;
-  orderNo: string;
-  createTime: string;
+  order_no: string;
+  created_time: string;
 }
 
 /**

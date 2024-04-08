@@ -1,7 +1,7 @@
 import { BasicColumn, FormSchema } from '@/components/Table';
 import { h } from 'vue';
 import { Switch } from 'ant-design-vue';
-import { setRoleStatus } from '@/api/demo/system';
+import { setRoleStatus } from '@/api/system/system';
 import { useMessage } from '@/hooks/web/useMessage';
 
 type CheckedType = boolean | string | number;

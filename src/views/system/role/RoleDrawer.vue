@@ -28,7 +28,7 @@
   import { BasicDrawer, useDrawerInner } from '@/components/Drawer';
   import { BasicTree, TreeItem } from '@/components/Tree';
 
-  import { getMenuList, AddRole, EditRole } from '@/api/demo/system';
+  import { getMenuList, AddRole, EditRole } from '@/api/system/system';
   import { message } from 'ant-design-vue';
 
   const emit = defineEmits(['success', 'register']);

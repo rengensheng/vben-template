@@ -1,4 +1,4 @@
-import { getAllRoleList } from '@/api/demo/system';
+import { getAllRoleList } from '@/api/system/system';
 import { BasicColumn, FormSchema } from '@/components/Table';
 
 export const columns: BasicColumn[] = [

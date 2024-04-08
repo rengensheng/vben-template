@@ -8,7 +8,7 @@
   import { BasicModal, useModalInner } from '@/components/Modal';
   import { BasicForm, useForm } from '@/components/Form';
   import { accountFormSchema } from './account.data';
-  import { getDeptList, AddUser, EditUser } from '@/api/demo/system';
+  import { getDeptList, AddUser, EditUser } from '@/api/system/system';
 
   defineOptions({ name: 'AccountModal' });
 

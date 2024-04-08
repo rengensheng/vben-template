@@ -31,7 +31,7 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getRoleListByPage, DeleteRole } from '@/api/demo/system';
+  import { getRoleListByPage, DeleteRole } from '@/api/system/system';
 
   import { useDrawer } from '@/components/Drawer';
   import RoleDrawer from './RoleDrawer.vue';

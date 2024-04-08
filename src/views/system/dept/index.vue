@@ -31,7 +31,7 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getDeptList, DeleteDept } from '@/api/demo/system';
+  import { getDeptList, DeleteDept } from '@/api/system/system';
 
   import { useModal } from '@/components/Modal';
   import DeptModal from './DeptModal.vue';

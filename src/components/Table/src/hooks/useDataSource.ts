@@ -265,13 +265,12 @@ export function useDataSource(
       let params: Recordable = merge(
         pageParams,
         useSearchForm ? getFieldsValue() : {},
-        searchInfo,
-        opt?.searchInfo ?? {},
         defSort,
         sortInfo,
         filterInfo,
         opt?.sortInfo ?? {},
         opt?.filterInfo ?? {},
+        { query: { ...searchInfo, ...(opt?.searchInfo ?? {}) } },
       );
       if (beforeFetch && isFunction(beforeFetch)) {
         params = (await beforeFetch(params)) || params;

@@ -31,12 +31,13 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getRoleListByPage } from '@/api/demo/system';
+  import { getRoleListByPage, DeleteRole } from '@/api/demo/system';
 
   import { useDrawer } from '@/components/Drawer';
   import RoleDrawer from './RoleDrawer.vue';
 
   import { columns, searchFormSchema } from './role.data';
+  import { message } from 'ant-design-vue';
 
   defineOptions({ name: 'RoleManagement' });
 
@@ -75,8 +76,14 @@
     });
   }
 
-  function handleDelete(record: Recordable) {
+  async function handleDelete(record: Recordable) {
     console.log(record);
+    try {
+      await DeleteRole(record.id);
+      reload();
+    } catch (e) {
+      message.error('删除失败');
+    }
   }
 
   function handleSuccess() {

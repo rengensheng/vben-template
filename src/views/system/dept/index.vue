@@ -31,12 +31,13 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getDeptList } from '@/api/demo/system';
+  import { getDeptList, DeleteDept } from '@/api/demo/system';
 
   import { useModal } from '@/components/Modal';
   import DeptModal from './DeptModal.vue';
 
   import { columns, searchFormSchema } from './dept.data';
+  import { message } from 'ant-design-vue';
 
   defineOptions({ name: 'DeptManagement' });
 
@@ -78,8 +79,14 @@
     });
   }
 
-  function handleDelete(record: Recordable) {
+  async function handleDelete(record: Recordable) {
     console.log(record);
+    try {
+      await DeleteDept(record.id);
+      reload();
+    } catch (e) {
+      message.error('删除失败');
+    }
   }
 
   function handleSuccess() {

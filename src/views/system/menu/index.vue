@@ -33,12 +33,13 @@
   import { nextTick } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getMenuList } from '@/api/demo/system';
+  import { getMenuList, DeleteMenu } from '@/api/demo/system';
 
   import { useDrawer } from '@/components/Drawer';
   import MenuDrawer from './MenuDrawer.vue';
 
   import { columns, searchFormSchema } from './menu.data';
+  import { message } from 'ant-design-vue';
 
   defineOptions({ name: 'MenuManagement' });
 
@@ -81,8 +82,14 @@
     });
   }
 
-  function handleDelete(record: Recordable) {
+  async function handleDelete(record: Recordable) {
     console.log(record);
+    try {
+      await DeleteMenu(record.id);
+      reload();
+    } catch (e) {
+      message.error('删除失败');
+    }
   }
 
   function handleSuccess() {

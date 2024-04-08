@@ -3,7 +3,6 @@ import { BasicPageParams, BasicFetchResult } from '@/api/model/baseModel';
 export type AccountParams = BasicPageParams & {
   account?: string;
   nickname?: string;
-  [key: string]: any;
 };
 
 export type RoleParams = {
@@ -14,7 +13,7 @@ export type RoleParams = {
 export type RolePageParams = BasicPageParams & RoleParams;
 
 export type DeptParams = {
-  deptName?: string;
+  dept_name?: string;
   status?: string;
 };
 
@@ -40,6 +39,14 @@ export interface DeptListItem {
   createTime: string;
   remark: string;
   status: number;
+  dept_name: string;
+  parent_dept: string;
+  children?: DeptListItem[];
+  label: string;
+  value: string;
+  title: string;
+  key: string;
+  query?: Recordable;
 }
 
 export interface MenuListItem {

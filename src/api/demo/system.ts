@@ -1,7 +1,6 @@
 import {
   AccountParams,
   DeptListItem,
-  MenuParams,
   RolePageParams,
   MenuListGetResultModel,
   DeptListGetResultModel,
@@ -14,21 +13,19 @@ enum Api {
   AccountList = '/user/list',
   IsAccountExist = '/user/accountExist',
   DeptList = '/dept/list',
-  setRoleStatus = '/role/setRoleStatus',
   MenuList = '/menu/list',
   RolePageList = '/role/list',
-  GetAllRoleList = '/role/list',
-  AddRole = '/role/add',
-  EditRole = '/role/update',
+  AddRole = '/role/create',
+  EditRole = '/role/update/',
   DeleteRole = '/role/delete/',
-  AddDept = '/dept/add',
-  EditDept = '/dept/update',
+  AddDept = '/dept/create',
+  EditDept = '/dept/update/',
   DeleteDept = '/dept/delete/',
-  AddUser = '/user/add',
-  EditUser = '/user/update',
+  AddUser = '/user/create',
+  EditUser = '/user/update/',
   DeleteUser = '/user/delete/',
-  AddMenu = '/menu/add',
-  EditMenu = '/menu/update',
+  AddMenu = '/menu/create',
+  EditMenu = '/menu/update/',
   DeleteMenu = '/menu/delete/',
   ResetPassword = '/user/resetPassword',
 }
@@ -67,8 +64,9 @@ export const getDeptListTree = (params?: DeptListItem) => {
             delete item.children;
           }
         });
-        res.items = res.items.filter((item) => !item.parent_dept);
-        console.log('树结果', res);
+        if (!params || !params.query || (params.query && JSON.stringify(params.query) == '{}')) {
+          res.items = res.items.filter((item) => !item.parent_dept);
+        }
         resolve(res);
       })
       .catch((e) => {
@@ -77,9 +75,9 @@ export const getDeptListTree = (params?: DeptListItem) => {
   });
 };
 
-export const getMenuList = (params?: MenuParams) => {
+export const getMenuList = () => {
   return new Promise((resolve, reject) => {
-    getMenuListTree(params)
+    getMenuListTree()
       .then((res: any) => {
         resolve(res.items || []);
       })
@@ -89,7 +87,7 @@ export const getMenuList = (params?: MenuParams) => {
   });
 };
 
-export const getMenuListTree = (params?: MenuParams) => {
+export const getMenuListTree = () => {
   return new Promise((resolve, reject) => {
     defHttp
       .post<MenuListGetResultModel>({
@@ -129,7 +127,7 @@ export const getAllRoleList = (params?: any) => {
   return new Promise((resolve, reject) => {
     params.pageSize = 99999;
     defHttp
-      .post<any>({ url: Api.GetAllRoleList, params })
+      .post<any>({ url: Api.RolePageList, params })
       .then((res) => {
         resolve(res.items);
       })
@@ -140,32 +138,36 @@ export const getAllRoleList = (params?: any) => {
 };
 
 export const setRoleStatus = (id: number, status: string) =>
-  defHttp.post({ url: Api.setRoleStatus, params: { id, status } });
+  defHttp.post({ url: Api.EditRole + id, params: { id, status } });
 
 export const isAccountExist = (account: string) =>
   defHttp.post({ url: Api.IsAccountExist, params: { account } }, { errorMessageMode: 'none' });
 
 export const AddRole = (role: Recordable) => defHttp.post({ url: Api.AddRole, params: role });
 
-export const EditRole = (role: Recordable) => defHttp.post({ url: Api.EditRole, params: role });
+export const EditRole = (role: Recordable) =>
+  defHttp.post({ url: Api.EditRole + role.id, params: role });
 
 export const DeleteRole = (id: number) => defHttp.post({ url: Api.DeleteRole + id });
 
 export const AddDept = (dept: Recordable) => defHttp.post({ url: Api.AddDept, params: dept });
 
-export const EditDept = (dept: Recordable) => defHttp.post({ url: Api.EditDept, params: dept });
+export const EditDept = (dept: Recordable) =>
+  defHttp.post({ url: Api.EditDept + dept.id, params: dept });
 
 export const DeleteDept = (id: number) => defHttp.post({ url: Api.DeleteDept + id });
 
 export const AddUser = (user: Recordable) => defHttp.post({ url: Api.AddUser, params: user });
 
-export const EditUser = (user: Recordable) => defHttp.post({ url: Api.EditUser, params: user });
+export const EditUser = (user: Recordable) =>
+  defHttp.post({ url: Api.EditUser + user.id, params: user });
 
 export const DeleteUser = (id: number) => defHttp.post({ url: Api.DeleteUser + id });
 
 export const AddMenu = (menu: Recordable) => defHttp.post({ url: Api.AddMenu, params: menu });
 
-export const EditMenu = (menu: Recordable) => defHttp.post({ url: Api.EditMenu, params: menu });
+export const EditMenu = (menu: Recordable) =>
+  defHttp.post({ url: Api.EditMenu + menu.id, params: menu });
 
 export const DeleteMenu = (id: number) => defHttp.post({ url: Api.DeleteMenu + id });
 

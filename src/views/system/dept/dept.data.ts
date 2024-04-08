@@ -66,7 +66,7 @@ export const formSchema: FormSchema[] = [
     required: true,
   },
   {
-    field: 'parentDept',
+    field: 'parent_dept',
     label: '上级部门',
     component: 'TreeSelect',
     ifShow({ values }) {

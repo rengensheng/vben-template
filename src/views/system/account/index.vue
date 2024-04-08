@@ -42,7 +42,7 @@
   import { reactive } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getAccountList } from '@/api/demo/system';
+  import { getAccountList, DeleteUser } from '@/api/demo/system';
   import { PageWrapper } from '@/components/Page';
   import DeptTree from './DeptTree.vue';
 
@@ -51,6 +51,7 @@
 
   import { columns, searchFormSchema } from './account.data';
   import { useGo } from '@/hooks/web/usePage';
+  import { message } from 'ant-design-vue';
 
   defineOptions({ name: 'AccountManagement' });
 
@@ -71,7 +72,6 @@
     showTableSetting: true,
     bordered: true,
     handleSearchInfoFn(info) {
-      console.log('handleSearchInfoFn', info);
       return info;
     },
     actionColumn: {
@@ -89,15 +89,21 @@
   }
 
   function handleEdit(record: Recordable) {
-    console.log(record);
     openModal(true, {
       record,
       isUpdate: true,
     });
   }
 
-  function handleDelete(record: Recordable) {
+  async function handleDelete(record: Recordable) {
     console.log(record);
+    try {
+      await DeleteUser(record.id);
+      reload();
+    } catch (e) {
+      message.error('删除失败');
+      console.error(e);
+    }
   }
 
   function handleExport() {
@@ -116,7 +122,7 @@
   }
 
   function handleSelect(deptId = '') {
-    searchInfo.deptId = deptId;
+    searchInfo.dept = deptId;
     reload();
   }
 

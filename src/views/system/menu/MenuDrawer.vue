@@ -16,12 +16,12 @@
   import { formSchema } from './menu.data';
   import { BasicDrawer, useDrawerInner } from '@/components/Drawer';
 
-  import { getMenuList } from '@/api/demo/system';
+  import { getMenuList, AddMenu, EditMenu } from '@/api/demo/system';
 
   defineOptions({ name: 'MenuDrawer' });
 
   const emit = defineEmits(['success', 'register']);
-
+  const rowId = ref('');
   const isUpdate = ref(true);
 
   const [registerForm, { resetFields, setFieldsValue, updateSchema, validate }] = useForm({
@@ -37,9 +37,12 @@
     isUpdate.value = !!data?.isUpdate;
 
     if (unref(isUpdate)) {
+      rowId.value = data.record.id;
       setFieldsValue({
         ...data.record,
       });
+    } else {
+      rowId.value = '';
     }
     const treeData = await getMenuList();
     updateSchema({
@@ -53,8 +56,18 @@
   async function handleSubmit() {
     try {
       const values = await validate();
+      values.order_no = Number(values.order_no);
       setDrawerProps({ confirmLoading: true });
-      // TODO custom api
+      if (unref(isUpdate)) {
+        await EditMenu({
+          ...values,
+          id: rowId.value,
+        });
+      } else {
+        await AddMenu({
+          ...values,
+        });
+      }
       console.log(values);
       closeDrawer();
       emit('success');

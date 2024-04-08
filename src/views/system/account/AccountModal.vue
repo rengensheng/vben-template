@@ -8,7 +8,7 @@
   import { BasicModal, useModalInner } from '@/components/Modal';
   import { BasicForm, useForm } from '@/components/Form';
   import { accountFormSchema } from './account.data';
-  import { getDeptList } from '@/api/demo/system';
+  import { getDeptList, AddUser, EditUser } from '@/api/demo/system';
 
   defineOptions({ name: 'AccountModal' });
 
@@ -58,8 +58,17 @@
     try {
       const values = await validate();
       setModalProps({ confirmLoading: true });
-      // TODO custom api
-      console.log(values);
+      if (unref(isUpdate)) {
+        await EditUser({
+          ...values,
+          id: unref(rowId),
+        });
+      } else {
+        await AddUser({
+          ...values,
+          id: unref(rowId),
+        });
+      }
       closeModal();
       emit('success', { isUpdate: unref(isUpdate), values: { ...values, id: rowId.value } });
     } finally {

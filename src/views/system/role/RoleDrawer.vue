@@ -28,10 +28,12 @@
   import { BasicDrawer, useDrawerInner } from '@/components/Drawer';
   import { BasicTree, TreeItem } from '@/components/Tree';
 
-  import { getMenuList } from '@/api/demo/system';
+  import { getMenuList, AddRole, EditRole } from '@/api/demo/system';
+  import { message } from 'ant-design-vue';
 
   const emit = defineEmits(['success', 'register']);
   const isUpdate = ref(true);
+  const rowId = ref('');
   const treeData = ref<TreeItem[]>([]);
 
   const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
@@ -51,9 +53,14 @@
     isUpdate.value = !!data?.isUpdate;
 
     if (unref(isUpdate)) {
+      rowId.value = data.record.id;
+      const editRow = { ...unref(data.record) };
+      editRow.menu = editRow.menu.split(',').map((item: string) => item);
       setFieldsValue({
-        ...data.record,
+        ...editRow,
       });
+    } else {
+      rowId.value = '';
     }
   });
 
@@ -62,8 +69,24 @@
   async function handleSubmit() {
     try {
       const values = await validate();
+      if (!values.menu) {
+        message.error('请选择菜单权限');
+        return;
+      }
+      const menuIds = values.menu.join(',');
       setDrawerProps({ confirmLoading: true });
-      // TODO custom api
+      if (unref(isUpdate)) {
+        await EditRole({
+          ...values,
+          menu: menuIds,
+          id: unref(rowId),
+        });
+      } else {
+        await AddRole({
+          ...values,
+          menu: menuIds,
+        });
+      }
       console.log(values);
       closeDrawer();
       emit('success');

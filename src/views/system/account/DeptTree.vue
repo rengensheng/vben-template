@@ -7,7 +7,7 @@
       treeWrapperClassName="h-[calc(100%-35px)] overflow-auto"
       :clickRowToExpand="false"
       :treeData="treeData"
-      :fieldNames="{ key: 'id', title: 'deptName' }"
+      :fieldNames="{ key: 'id', title: 'dept_name' }"
       @select="handleSelect"
     />
   </div>
@@ -26,6 +26,7 @@
 
   async function fetch() {
     treeData.value = (await getDeptList()) as unknown as TreeItem[];
+    console.log(treeData.value);
   }
 
   function handleSelect(keys) {

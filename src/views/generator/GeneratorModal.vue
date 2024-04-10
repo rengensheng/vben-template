@@ -27,7 +27,7 @@
 
   const tableNames = ref<string[]>([]);
 
-  const [registerModal, { setModalProps }] = useModalInner(async (data) => {
+  const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
     tableNames.value = data.tableNames;
     resetFields();
     setModalProps({
@@ -46,6 +46,7 @@
     try {
       const values = await validate();
       await generateWeb(tableNames.value, values.projectPath);
+      closeModal();
       message.success('生成成功');
     } catch (e) {
       message.error('生成失败');

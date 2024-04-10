@@ -36,14 +36,17 @@
         </template>
       </template>
     </BasicTable>
+    <GeneratorModal @register="registerMModal" />
   </div>
 </template>
 <script lang="ts" setup>
   import { ref, unref } from 'vue';
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getTableList, generateWeb, generateBack } from '@/api/generator/generator';
+  import { getTableList, generateBack } from '@/api/generator/generator';
   import { columns } from './generator.data';
   import { message } from 'ant-design-vue';
+  import GeneratorModal from './GeneratorModal.vue';
+  import { useModal } from '@/components/Modal';
 
   defineOptions({ name: 'CodeGenerator' });
   const selectedRows = ref<any>([]);
@@ -73,6 +76,8 @@
     },
   });
 
+  const [registerMModal, { openModal }] = useModal();
+
   async function handleGenerateFront(tableName?: string) {
     let tableNames: string[] = [];
     if (tableName) {
@@ -80,12 +85,10 @@
     } else {
       tableNames = unref(selectedRows);
     }
-    try {
-      await generateWeb(tableNames);
-      message.success('生成成功');
-    } catch (e) {
-      message.error('生成失败');
-    }
+    openModal(true, {
+      isUpdate: false,
+      tableNames,
+    });
   }
 
   async function handleGenerateBack(tableName?: string) {

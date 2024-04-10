@@ -9,11 +9,12 @@ enum Api {
 
 export const getTableList = () => defHttp.post<GeneratorTableInfo>({ url: Api.GENERATOR_LIST });
 
-export const generateWeb = (tableNames: string[]) =>
+export const generateWeb = (tableNames: string[], projectPath: string) =>
   defHttp.post<void>({
     url: Api.GENERATOR_WEB,
     params: {
       tables: tableNames,
+      projectPath,
     },
   });
 

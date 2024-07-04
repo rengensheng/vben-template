@@ -1,5 +1,5 @@
 import { defHttp } from '@/utils/http/axios';
-import { LoginParams, LoginResultModel, GetUserInfoModel } from './model/userModel';
+import { LoginParams, LoginResultModel, GetUserInfoModel, User } from './model/userModel';
 
 import { ErrorMessageMode } from '#/axios';
 
@@ -10,6 +10,9 @@ enum Api {
   GetPermCode = '/user/getPermCode',
   TestRetry = '/testRetry',
   ChangePassword = '/user/password',
+  GetUserDetailById = '/user/get/',
+  UserDiabled = '/user/disabled/',
+  ResetPassword = '/user/resetPassword/',
 }
 
 /**
@@ -62,5 +65,23 @@ export function changePassword(oldPassword, newPassword) {
       oldPassword,
       newPassword,
     },
+  });
+}
+
+export function getUserDetailInfo(id: string) {
+  return defHttp.post<User>({
+    url: Api.GetUserDetailById + id,
+  });
+}
+
+export function diabledUser(id: string) {
+  return defHttp.post<User>({
+    url: Api.UserDiabled + id,
+  });
+}
+
+export function resetPassword(id: string) {
+  return defHttp.post({
+    url: Api.ResetPassword + id,
   });
 }

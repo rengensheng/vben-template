@@ -36,3 +36,25 @@ export interface GetUserInfoModel {
   // 介绍
   desc?: string;
 }
+
+export interface User {
+  account: string;
+  avatar: string;
+  created_by: string;
+  created_time: string;
+  dept: string;
+  email: string;
+  id: string;
+  loginId: string;
+  nickname: string;
+  phone: string;
+  pwd: string;
+  remark: string;
+  revision: number;
+  role: string;
+  updated_by: string;
+  updated_time: string;
+  username: string;
+  is_delete: number;
+  status: number;
+}

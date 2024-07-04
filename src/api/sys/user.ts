@@ -9,6 +9,7 @@ enum Api {
   GetUserInfo = '/user/getUserInfo',
   GetPermCode = '/user/getPermCode',
   TestRetry = '/testRetry',
+  ChangePassword = '/user/password',
 }
 
 /**
@@ -52,4 +53,14 @@ export function testRetry() {
       },
     },
   );
+}
+
+export function changePassword(oldPassword, newPassword) {
+  return defHttp.post<null>({
+    url: Api.ChangePassword,
+    params: {
+      oldPassword,
+      newPassword,
+    },
+  });
 }

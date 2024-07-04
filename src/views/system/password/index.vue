@@ -12,11 +12,13 @@
 <script lang="ts" setup>
   import { PageWrapper } from '@/components/Page';
   import { BasicForm, useForm } from '@/components/Form';
-
+  import { changePassword } from '@/api/sys/user';
   import { formSchema } from './pwd.data';
+  import { useUserStore } from '@/store/modules/user';
+  import { message } from 'ant-design-vue';
 
   defineOptions({ name: 'ChangePassword' });
-
+  const userStore = useUserStore();
   const [register, { validate, resetFields }] = useForm({
     size: 'large',
     baseColProps: { span: 24 },
@@ -29,11 +31,9 @@
     try {
       const values = await validate();
       const { passwordOld, passwordNew } = values;
-
-      // TODO custom api
-      console.log(passwordOld, passwordNew);
-      // const { router } = useRouter();
-      // router.push(pageEnum.BASE_LOGIN);
+      await changePassword(passwordOld, passwordNew);
+      message.success('修改成功，请重新登录！');
+      userStore.logout();
     } catch (error) {
       console.error(error);
     }

@@ -61,13 +61,7 @@ export function processDateValue(attr: Recordable, component: string) {
   }
 }
 
-export const defaultValueComponents = [
-  'Input',
-  'InputPassword',
-  'InputNumber',
-  'InputSearch',
-  'InputTextArea',
-];
+export const defaultValueComponents = ['Input', 'InputPassword', 'InputSearch', 'InputTextArea'];
 
 export function handleInputNumberValue(component?: ComponentType, val?: any) {
   if (!component) return val;

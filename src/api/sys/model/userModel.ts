@@ -40,8 +40,8 @@ export interface GetUserInfoModel {
 export interface User {
   account: string;
   avatar: string;
-  created_by: string;
-  created_time: string;
+  createdBy: string;
+  createdTime: string;
   dept: string;
   email: string;
   id: string;
@@ -52,9 +52,9 @@ export interface User {
   remark: string;
   revision: number;
   role: string;
-  updated_by: string;
-  updated_time: string;
+  updatedBy: string;
+  updatedTime: string;
   username: string;
-  is_delete: number;
+  isDelete: number;
   status: number;
 }

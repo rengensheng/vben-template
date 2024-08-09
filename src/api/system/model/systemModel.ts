@@ -13,7 +13,7 @@ export type RoleParams = {
 export type RolePageParams = BasicPageParams & RoleParams;
 
 export type DeptParams = {
-  dept_name?: string;
+  deptName?: string;
   status?: string;
 };
 
@@ -28,19 +28,19 @@ export interface AccountListItem {
   email: string;
   nickname: string;
   role: number;
-  created_time: string;
+  createdTime: string;
   remark: string;
   status: number;
 }
 
 export interface DeptListItem {
   id: string;
-  order_no: string;
-  created_time: string;
+  orderNo: string;
+  createdTime: string;
   remark: string;
   status: number;
-  dept_name: string;
-  parent_dept: string;
+  deptName: string;
+  parentDept: string;
   children?: DeptListItem[];
   label: string;
   value: string;
@@ -51,18 +51,18 @@ export interface DeptListItem {
 
 export interface MenuListItem {
   id: string;
-  order_no: string;
-  created_time: string;
+  orderNo: string;
+  createdTime: string;
   status: number;
   icon: string;
   component: string;
   permission: string;
-  menu_name: string;
+  menuName: string;
   label?: string;
   value?: string;
   title?: string;
   key?: string;
-  parent_menu?: string;
+  parentMenu?: string;
   children?: MenuListItem[];
 }
 
@@ -71,8 +71,8 @@ export interface RoleListItem {
   roleName: string;
   roleValue: string;
   status: number;
-  order_no: string;
-  created_time: string;
+  orderNo: string;
+  createdTime: string;
 }
 
 /**

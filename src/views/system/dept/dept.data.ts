@@ -5,13 +5,13 @@ import { Tag } from 'ant-design-vue';
 export const columns: BasicColumn[] = [
   {
     title: '部门名称',
-    dataIndex: 'dept_name',
+    dataIndex: 'deptName',
     width: 160,
     align: 'left',
   },
   {
     title: '排序',
-    dataIndex: 'order_no',
+    dataIndex: 'orderNo',
     width: 50,
   },
   {
@@ -28,7 +28,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '创建时间',
-    dataIndex: 'created_time',
+    dataIndex: 'createdTime',
     width: 180,
   },
   {
@@ -39,7 +39,7 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'dept_name',
+    field: 'deptName',
     label: '部门名称',
     component: 'Input',
     colProps: { span: 8 },
@@ -60,23 +60,23 @@ export const searchFormSchema: FormSchema[] = [
 
 export const formSchema: FormSchema[] = [
   {
-    field: 'dept_name',
+    field: 'deptName',
     label: '部门名称',
     component: 'Input',
     required: true,
   },
   {
-    field: 'parent_dept',
+    field: 'parentDept',
     label: '上级部门',
     component: 'TreeSelect',
     ifShow({ values }) {
-      const { dept_name, parentDept } = values;
+      const { deptName, parentDept } = values;
       // Hide without a parentDept when editing
-      return parentDept || (!dept_name && !parentDept);
+      return parentDept || (!deptName && !parentDept);
     },
     componentProps: {
       fieldNames: {
-        label: 'dept_name',
+        label: 'deptName',
         value: 'id',
       },
       getPopupContainer: () => document.body,
@@ -84,7 +84,7 @@ export const formSchema: FormSchema[] = [
     required: true,
   },
   {
-    field: 'order_no',
+    field: 'orderNo',
     label: '排序',
     component: 'InputNumber',
     required: true,

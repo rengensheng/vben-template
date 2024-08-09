@@ -45,11 +45,11 @@
         </div>
         <div class="flex mt-5">
           <div class="font-bold w-32 text-right">创建时间：</div>
-          <div class="ml-2">{{ userDetail.created_time }}</div>
+          <div class="ml-2">{{ userDetail.createdTime }}</div>
         </div>
         <div class="flex mt-5">
           <div class="font-bold w-32 text-right">创建人：</div>
-          <div class="ml-2">{{ userDetail.created_by }}</div>
+          <div class="ml-2">{{ userDetail.createdBy }}</div>
         </div>
       </template>
     </div>

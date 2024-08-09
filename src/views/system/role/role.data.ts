@@ -8,12 +8,12 @@ type CheckedType = boolean | string | number;
 export const columns: BasicColumn[] = [
   {
     title: '角色名称',
-    dataIndex: 'role_name',
+    dataIndex: 'roleName',
     width: 200,
   },
   {
     title: '角色值',
-    dataIndex: 'role_value',
+    dataIndex: 'roleValue',
     width: 180,
   },
   {
@@ -55,7 +55,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '创建时间',
-    dataIndex: 'created_time',
+    dataIndex: 'createdTime',
     width: 180,
   },
   {
@@ -66,7 +66,7 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'role_name',
+    field: 'roleName',
     label: '角色名称',
     component: 'Input',
     colProps: { span: 8 },
@@ -87,13 +87,13 @@ export const searchFormSchema: FormSchema[] = [
 
 export const formSchema: FormSchema[] = [
   {
-    field: 'role_name',
+    field: 'roleName',
     label: '角色名称',
     required: true,
     component: 'Input',
   },
   {
-    field: 'role_value',
+    field: 'roleValue',
     label: '角色值',
     required: true,
     component: 'Input',

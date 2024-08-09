@@ -55,17 +55,17 @@ export const getDeptListTree = (params?: DeptListItem) => {
       .then((res) => {
         // 开始对数据进行处理
         res.items.forEach((item) => {
-          item.label = item.dept_name;
+          item.label = item.deptName;
           item.value = item.id;
-          item.title = item.dept_name;
+          item.title = item.deptName;
           item.key = item.id;
-          item.children = res.items.filter((child) => child.parent_dept == item.id);
+          item.children = res.items.filter((child) => child.parentDept == item.id);
           if (item.children.length == 0) {
             delete item.children;
           }
         });
         if (!params || !params.query || (params.query && JSON.stringify(params.query) == '{}')) {
-          res.items = res.items.filter((item) => !item.parent_dept);
+          res.items = res.items.filter((item) => !item.parentDept);
         }
         resolve(res);
       })
@@ -94,23 +94,23 @@ export const getMenuListTree = () => {
         url: Api.MenuList,
         params: {
           pageSize: 1000000,
-          sortItem: 'order_no',
+          sortItem: 'orderNo',
           sortType: 'asc',
         },
       })
       .then((res) => {
         // 开始对数据进行处理
         res.items.forEach((item) => {
-          item.label = item.menu_name;
+          item.label = item.menuName;
           item.value = item.id;
-          item.title = item.menu_name;
+          item.title = item.menuName;
           item.key = item.id;
-          item.children = res.items.filter((child) => child.parent_menu == item.id);
+          item.children = res.items.filter((child) => child.parentMenu == item.id);
           if (item.children.length == 0) {
             delete item.children;
           }
         });
-        res.items = res.items.filter((item) => !item.parent_menu);
+        res.items = res.items.filter((item) => !item.parentMenu);
         console.log('树结果', res);
         resolve(res);
       })

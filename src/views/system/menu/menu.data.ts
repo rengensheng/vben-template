@@ -6,7 +6,7 @@ import Icon from '@/components/Icon/Icon.vue';
 export const columns: BasicColumn[] = [
   {
     title: '菜单名称',
-    dataIndex: 'menu_name',
+    dataIndex: 'menuName',
     width: 200,
     align: 'left',
   },
@@ -29,7 +29,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '排序',
-    dataIndex: 'order_no',
+    dataIndex: 'orderNo',
     width: 50,
   },
   {
@@ -46,7 +46,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '创建时间',
-    dataIndex: 'created_time',
+    dataIndex: 'createdTime',
     width: 180,
   },
 ];
@@ -57,7 +57,7 @@ const isButton = (type: string) => type === '2';
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'menu_name',
+    field: 'menuName',
     label: '菜单名称',
     component: 'Input',
     colProps: { span: 8 },
@@ -92,19 +92,19 @@ export const formSchema: FormSchema[] = [
     colProps: { lg: 24, md: 24 },
   },
   {
-    field: 'menu_name',
+    field: 'menuName',
     label: '菜单名称',
     component: 'Input',
     required: true,
   },
 
   {
-    field: 'parent_menu',
+    field: 'parentMenu',
     label: '上级菜单',
     component: 'TreeSelect',
     componentProps: {
       fieldNames: {
-        label: 'menu_name',
+        label: 'menuName',
         value: 'id',
       },
       getPopupContainer: () => document.body,
@@ -112,7 +112,7 @@ export const formSchema: FormSchema[] = [
   },
 
   {
-    field: 'order_no',
+    field: 'orderNo',
     label: '排序',
     component: 'InputNumber',
     required: true,
@@ -126,7 +126,7 @@ export const formSchema: FormSchema[] = [
   },
 
   {
-    field: 'route_path',
+    field: 'routePath',
     label: '路由地址',
     component: 'Input',
     required: true,
@@ -157,7 +157,7 @@ export const formSchema: FormSchema[] = [
     },
   },
   {
-    field: 'is_ext',
+    field: 'isExt',
     label: '是否外链',
     component: 'RadioButtonGroup',
     defaultValue: '0',

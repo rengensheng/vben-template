@@ -46,7 +46,7 @@
     }
     const treeData = await getMenuList();
     updateSchema({
-      field: 'parent_menu',
+      field: 'parentMenu',
       componentProps: { treeData },
     });
   });
@@ -56,7 +56,7 @@
   async function handleSubmit() {
     try {
       const values = await validate();
-      values.order_no = Number(values.order_no);
+      values.orderNo = Number(values.orderNo);
       setDrawerProps({ confirmLoading: true });
       if (unref(isUpdate)) {
         await EditMenu({

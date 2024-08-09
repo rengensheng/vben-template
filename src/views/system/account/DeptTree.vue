@@ -7,7 +7,7 @@
       treeWrapperClassName="h-[calc(100%-35px)] overflow-auto"
       :clickRowToExpand="false"
       :treeData="treeData"
-      :fieldNames="{ key: 'id', title: 'dept_name' }"
+      :fieldNames="{ key: 'id', title: 'deptName' }"
       @select="handleSelect"
     />
   </div>

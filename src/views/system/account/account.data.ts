@@ -19,7 +19,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '创建时间',
-    dataIndex: 'created_time',
+    dataIndex: 'createdTime',
     width: 180,
   },
   {
@@ -86,8 +86,8 @@ export const accountFormSchema: FormSchema[] = [
     component: 'ApiSelect',
     componentProps: {
       api: getAllRoleList,
-      labelField: 'role_name',
-      valueField: 'role_value',
+      labelField: 'roleName',
+      valueField: 'roleValue',
     },
     required: true,
   } as any,
@@ -97,7 +97,7 @@ export const accountFormSchema: FormSchema[] = [
     component: 'TreeSelect',
     componentProps: {
       fieldNames: {
-        label: 'dept_name',
+        label: 'deptName',
         value: 'id',
       },
       getPopupContainer: () => document.body,
